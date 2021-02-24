@@ -1,28 +1,20 @@
-import React, { useContext } from "react";
-import "./App.css";
+import React, { createContext } from "react";
+import Child1 from "./Child1";
 
-const themes = {
-	light: {
-		foreground: "#000000",
-		background: "#eeeeee",
-	},
-	dark: {
-		foreground: "#ffffff",
-		background: "#222222",
-	},
-};
+export const NameContext = createContext();
 
-const ThemeContext = React.createContext(themes.light);
-
-function App() {
+const App = ({ name }) => {
 	return (
-		<div className='App'>
-			<ThemeContext.Provider value={themes.dark}>
-				<h1>hello world</h1>
-				<h2>the world is beautiful</h2>
-			</ThemeContext.Provider>
+		<div>
+			<NameContext.Provider value={name}>
+				<Child1 />
+			</NameContext.Provider>
 		</div>
 	);
-}
+};
+
+App.defaultProps = {
+	name: "Jake",
+};
 
 export default App;
